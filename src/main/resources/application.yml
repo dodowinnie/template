@@ -1,0 +1,49 @@
+spring:
+  application:
+    name: jianqiao
+  main:
+    allow-bean-definition-overriding: true
+  datasource:
+    continue-on-error: true
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:mysql://127.0.0.1:3306/jianqiao?allowMultiQueries=true&useSSL=false&useUnicode=true&characterEncoding=UTF8
+    username: root
+    password: a123456
+    driver-class-name: com.mysql.jdbc.Driver
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 20
+      auto-commit: true
+      idle-timeout: 60000
+      max-lifetime: 900000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
+  aop:
+    proxy-target-class: true
+mybatis:
+  type-aliases-package: null
+  configuration:
+    map-underscore-to-camel-case: true
+    use-generated-keys: true
+    default-fetch-size: 100
+    default-statement-timeout: 30
+  mapper-locations: classpath:mapper/*.xml
+executor:
+  corePoolSize: 2
+  maxPoolSize: 10
+  queueCapacity: 10
+  keepAliveSeconds: 60
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+logging:
+  config: classpath:log4j2.xml
+  level:
+    com.spsm.jianqiao.mapper: debug
+
+server:
+  port: 8081
+  servlet:
+    context-path: /jianqiao
