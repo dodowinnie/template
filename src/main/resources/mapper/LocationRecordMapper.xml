@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spsm.jianqiao.mapper.LocationRecordMapper">
+  <resultMap id="BaseResultMap" type="com.spsm.jianqiao.pojo.LocationRecord">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="tag_no" jdbcType="VARCHAR" property="tagNo" />
+    <result column="anchor_no" jdbcType="VARCHAR" property="anchorNo" />
+    <result column="pos_x" jdbcType="DECIMAL" property="posX" />
+    <result column="pos_y" jdbcType="DECIMAL" property="posY" />
+    <result column="pos_z" jdbcType="DECIMAL" property="posZ" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, tag_no, anchor_no, pos_x, pos_y, pos_z, time
+  </sql>
+  <select id="selectByExample" parameterType="com.spsm.jianqiao.pojo.LocationRecordExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from location_record
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from location_record
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from location_record
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.spsm.jianqiao.pojo.LocationRecordExample">
+    delete from location_record
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.spsm.jianqiao.pojo.LocationRecord">
+    insert into location_record (id, tag_no, anchor_no, 
+      pos_x, pos_y, pos_z, time
+      )
+    values (#{id,jdbcType=BIGINT}, #{tagNo,jdbcType=VARCHAR}, #{anchorNo,jdbcType=VARCHAR}, 
+      #{posX,jdbcType=DECIMAL}, #{posY,jdbcType=DECIMAL}, #{posZ,jdbcType=DECIMAL}, #{time,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.spsm.jianqiao.pojo.LocationRecord">
+    insert into location_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="tagNo != null">
+        tag_no,
+      </if>
+      <if test="anchorNo != null">
+        anchor_no,
+      </if>
+      <if test="posX != null">
+        pos_x,
+      </if>
+      <if test="posY != null">
+        pos_y,
+      </if>
+      <if test="posZ != null">
+        pos_z,
+      </if>
+      <if test="time != null">
+        time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="tagNo != null">
+        #{tagNo,jdbcType=VARCHAR},
+      </if>
+      <if test="anchorNo != null">
+        #{anchorNo,jdbcType=VARCHAR},
+      </if>
+      <if test="posX != null">
+        #{posX,jdbcType=DECIMAL},
+      </if>
+      <if test="posY != null">
+        #{posY,jdbcType=DECIMAL},
+      </if>
+      <if test="posZ != null">
+        #{posZ,jdbcType=DECIMAL},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.spsm.jianqiao.pojo.LocationRecordExample" resultType="java.lang.Long">
+    select count(*) from location_record
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update location_record
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.tagNo != null">
+        tag_no = #{record.tagNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.anchorNo != null">
+        anchor_no = #{record.anchorNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.posX != null">
+        pos_x = #{record.posX,jdbcType=DECIMAL},
+      </if>
+      <if test="record.posY != null">
+        pos_y = #{record.posY,jdbcType=DECIMAL},
+      </if>
+      <if test="record.posZ != null">
+        pos_z = #{record.posZ,jdbcType=DECIMAL},
+      </if>
+      <if test="record.time != null">
+        time = #{record.time,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update location_record
+    set id = #{record.id,jdbcType=BIGINT},
+      tag_no = #{record.tagNo,jdbcType=VARCHAR},
+      anchor_no = #{record.anchorNo,jdbcType=VARCHAR},
+      pos_x = #{record.posX,jdbcType=DECIMAL},
+      pos_y = #{record.posY,jdbcType=DECIMAL},
+      pos_z = #{record.posZ,jdbcType=DECIMAL},
+      time = #{record.time,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.spsm.jianqiao.pojo.LocationRecord">
+    update location_record
+    <set>
+      <if test="tagNo != null">
+        tag_no = #{tagNo,jdbcType=VARCHAR},
+      </if>
+      <if test="anchorNo != null">
+        anchor_no = #{anchorNo,jdbcType=VARCHAR},
+      </if>
+      <if test="posX != null">
+        pos_x = #{posX,jdbcType=DECIMAL},
+      </if>
+      <if test="posY != null">
+        pos_y = #{posY,jdbcType=DECIMAL},
+      </if>
+      <if test="posZ != null">
+        pos_z = #{posZ,jdbcType=DECIMAL},
+      </if>
+      <if test="time != null">
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.spsm.jianqiao.pojo.LocationRecord">
+    update location_record
+    set tag_no = #{tagNo,jdbcType=VARCHAR},
+      anchor_no = #{anchorNo,jdbcType=VARCHAR},
+      pos_x = #{posX,jdbcType=DECIMAL},
+      pos_y = #{posY,jdbcType=DECIMAL},
+      pos_z = #{posZ,jdbcType=DECIMAL},
+      time = #{time,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

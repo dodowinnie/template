@@ -50,7 +50,7 @@
 		</javaClientGenerator>
 
 		<!-- 指定逆向依据的数据表 -->
-		<table tableName="person" domainObjectName="Person"></table>
+		<table tableName="location_record" domainObjectName="LocationRecord"></table>
 		<!-- <table tableName="agv_data" domainObjectName="AgvData"></table>
 		<table tableName="machine_tool_data" domainObjectName="MachineToolData"></table>
 		<table tableName="robot_data" domainObjectName="RobotData"></table> -->
