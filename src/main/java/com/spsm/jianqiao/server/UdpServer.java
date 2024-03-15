@@ -23,7 +23,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Map;
 
-@Configuration
+//@Configuration
 public class UdpServer {
 
     @Autowired

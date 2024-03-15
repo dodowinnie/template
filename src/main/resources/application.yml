@@ -50,3 +50,8 @@ server:
 
 udp:
   listeningPort: 20010
+
+socket:
+  udp:
+    ip: 0.0.0.0
+    port: 20019
